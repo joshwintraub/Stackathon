@@ -7,12 +7,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-  Dimensions
+  View
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
-import MapView from 'react-native-maps'
 
 export default function HomeScreen() {
   return (
@@ -114,14 +112,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    ...StyleSheet.absoluteFillObject,
-    // height: 400,
-    // width: 400
-    // justifyContent: 'flex-end',
-    // alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -131,9 +121,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
-    // justifyContent: 'flex-end',
-    // alignItems: 'center'
+    paddingTop: 30
   },
   welcomeContainer: {
     alignItems: 'center',
