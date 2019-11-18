@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import { ExpoConfigView } from '@expo/samples';
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Button } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 import axios from 'axios'
+// import { createStackNavigator, createBottomTabNavigator, navigate } from 'react-navigation';
 
 export default class MapScreen extends Component {
   // return <ExpoConfigView />; // from default template
@@ -47,7 +48,10 @@ export default class MapScreen extends Component {
         latitudeDelta: 0.017,
         longitudeDelta: 0.019,
       }}>
-      <Marker coordinate={this.state} />
+      <Marker coordinate={this.state} onPress={() => this.props.navigation.navigate('Tab')} />
+      {/* Should have for loop here to loop through responses from API request */}
+      <Marker coordinate={{ latitude: 40.7046213003984, longitude: -74.0107793876969 }} onPress={() => this.props.navigation.navigate('Tab')}>
+      </Marker>
     </MapView>
   }
 }
