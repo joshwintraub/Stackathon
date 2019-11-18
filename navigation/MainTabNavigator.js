@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
 import TabScreen from '../screens/TabScreen';
+import TestScreen from '../screens/test';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -37,7 +38,7 @@ HomeStack.path = '';
 
 const MapStack = createStackNavigator(
   {
-    Settings: MapScreen,
+    Map: MapScreen,
   },
   config
 );
@@ -53,7 +54,7 @@ MapStack.path = '';
 
 const TabStack = createStackNavigator(
   {
-    Links: TabScreen,
+    Tab: TabScreen,
   },
   config
 );
@@ -67,10 +68,34 @@ TabStack.navigationOptions = {
 
 TabStack.path = '';
 
+const TestStack = createStackNavigator(
+  {
+    Test: TestScreen,
+  },
+  config
+);
+
+TestStack.navigationOptions = {
+  tabBarLabel: 'Test',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+TestStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   MapStack,
   TabStack,
+  TestStack
 });
 
 tabNavigator.path = '';

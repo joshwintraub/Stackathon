@@ -1,24 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import { ExpoConfigView } from '@expo/samples';
-import { StyleSheet } from 'react-native'
-import MapView from 'react-native-maps'
+import { StyleSheet, View } from 'react-native'
+import MapView, { Marker } from 'react-native-maps'
+import axios from 'axios'
 
-export default function TabScreen() {
+export default class MapScreen extends Component {
   // return <ExpoConfigView />; // from default template
-  return <MapView
-    style={styles.map}
-    region={{
-      latitude: 40.705018,
-      longitude: -74.009272,
-      latitudeDelta: 0.017,
-      longitudeDelta: 0.019,
-    }}
-  >
-  </MapView>
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: 40.7050758,
+      longitude: -74.0091604,
+      error: 0
+    }
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        error: null
+      });
+    },
+      error => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 }
+    );
+
+    // let config = {
+    //   headers: { 'Authorization': `Bearer ${process.env.YELP_API_KEY}` },
+    //   params: {
+    //     latitude: this.state.latitude,
+    //     longitude: this.state.latitude
+    //   }
+    // };
+    // const { data } = axios.get('https://api.yelp.com/v3/businesses/search', config).then(response => console.log(response));
+  }
+
+  render() {
+    return <MapView
+      style={styles.map}
+      region={{
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
+        latitudeDelta: 0.017,
+        longitudeDelta: 0.019,
+      }}>
+      <Marker coordinate={this.state} />
+    </MapView>
+  }
 }
 
-TabScreen.navigationOptions = {
-  title: 'app.json',
+MapScreen.navigationOptions = {
+  title: 'My Area',
 };
 
 const styles = StyleSheet.create({
