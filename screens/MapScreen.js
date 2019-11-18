@@ -22,25 +22,32 @@ export default class MapScreen extends Component {
       this.setState({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
-        error: null
+        error: null,
+        businesses: null
       });
     },
       error => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 }
     );
 
-    // let config = {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${process.env.YELP_API_KEY}`
-    //   },
-    //   params: {
-    //     latitude: this.state.latitude,
-    //     longitude: this.state.latitude
-    //   }
-    // };
-    // const { data } = await axios.get(`https://api.yelp.com/v3/businesses/search`, config);
-    // console.log(data)
+    let config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer tGrWem7GLpKMgij7n7hopv8l9CaEou_hUomIT9B5cTuyrsMsZ_a-1EeH1E4DpaR_ta8H8Vkleaj7MJSZzgVjOcZRuBwWo4wxRwg1Puo_GBQqagJllJsWLOXg7w7SXXYx`
+      },
+      params: {
+        latitude: this.state.latitude,
+        longitude: this.state.latitude
+      }
+    };
+    try {
+      const data = await axios.get(`https://api.yelp.com/v3/businesses/search`, config);
+      // const { Adata } = JSON.parse(data)
+      // this.setState({ businesses: businesses });
+      console.log('HERE', data.params);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -52,10 +59,10 @@ export default class MapScreen extends Component {
         latitudeDelta: 0.017,
         longitudeDelta: 0.019,
       }}>
-      <Marker coordinate={this.state} onPress={() => this.props.navigation.navigate('Home')} />
-      {/* Should have for loop here to loop through responses from API request */}
-      <Marker coordinate={{ latitude: 40.7046213003984, longitude: -74.0107793876969 }} onPress={() => this.props.navigation.navigate('Tab')}>
-      </Marker>
+      <Marker coordinate={this.state} pinColor='blue' onPress={() => this.props.navigation.navigate('Home')} />
+      {/* {this.state.businesses.map(business => (
+        <Marker key={business.id} coordinate={{ latitude: business.coordinates.latitude, longitude: business.coordinates.longitude }} onPress={() => this.props.navigation.navigate('Tab')} />
+      ))} */}
     </MapView>
   }
 }
