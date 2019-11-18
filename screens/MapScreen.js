@@ -17,7 +17,7 @@ export default class MapScreen extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     navigator.geolocation.getCurrentPosition(position => {
       this.setState({
         latitude: position.coords.latitude,
@@ -30,13 +30,17 @@ export default class MapScreen extends Component {
     );
 
     // let config = {
-    //   headers: { 'Authorization': `Bearer ${process.env.YELP_API_KEY}` },
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${process.env.YELP_API_KEY}`
+    //   },
     //   params: {
     //     latitude: this.state.latitude,
     //     longitude: this.state.latitude
     //   }
     // };
-    // const { data } = axios.get('https://api.yelp.com/v3/businesses/search', config).then(response => console.log(response));
+    // const { data } = await axios.get(`https://api.yelp.com/v3/businesses/search`, config);
+    // console.log(data)
   }
 
   render() {
@@ -48,7 +52,7 @@ export default class MapScreen extends Component {
         latitudeDelta: 0.017,
         longitudeDelta: 0.019,
       }}>
-      <Marker coordinate={this.state} onPress={() => this.props.navigation.navigate('Tab')} />
+      <Marker coordinate={this.state} onPress={() => this.props.navigation.navigate('Home')} />
       {/* Should have for loop here to loop through responses from API request */}
       <Marker coordinate={{ latitude: 40.7046213003984, longitude: -74.0107793876969 }} onPress={() => this.props.navigation.navigate('Tab')}>
       </Marker>

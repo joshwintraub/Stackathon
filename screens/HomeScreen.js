@@ -18,6 +18,32 @@ export default function HomeScreen() {
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
+
+        <View style={styles.welcomeContainer}>
+          <Text>
+
+
+
+
+
+          </Text>
+        </View>
+
+        <View style={styles.getStartedContainer}>
+          {/* <DevelopmentModeNotice /> */}
+
+          <Text style={styles.getStartedText}>Welcome to bibo!</Text>
+
+          <View
+            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+            <MonoText> Hi insert_user_name</MonoText>
+          </View>
+
+          <Text style={styles.getStartedText}>
+            To get started, tap on the Map tab and find local bars and restuarnts near you.
+          </Text>
+        </View>
+
         <View style={styles.welcomeContainer}>
           <Image
             source={
@@ -29,41 +55,26 @@ export default function HomeScreen() {
           />
         </View>
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
+        {/* <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
               Help, it didn’t automatically reload!
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
+          Note: The My Tab page will only populate once you have selected a bar. Get started now:
         </Text>
 
-        <View
+        {/* <View
           style={[styles.codeHighlightContainer, styles.navigationFilename]}>
           <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
+            Get started now:
           </MonoText>
-        </View>
+        </View> */}
       </View>
     </View>
   );

@@ -9,9 +9,9 @@ export default function TabScreen() {
        * Go ahead and delete ExpoLinksView and replace it with your content;
        * we just wanted to provide you with some helpful links.
        */}
+      {/* <ExpoLinksView /> */}
       <Text>{this.props}</Text>
       {console.log(this.props)}
-      <ExpoLinksView />
     </ScrollView>
   );
 }
