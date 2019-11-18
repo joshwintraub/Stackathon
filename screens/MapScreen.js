@@ -33,7 +33,7 @@ export default class MapScreen extends Component {
     let config = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer tGrWem7GLpKMgij7n7hopv8l9CaEou_hUomIT9B5cTuyrsMsZ_a-1EeH1E4DpaR_ta8H8Vkleaj7MJSZzgVjOcZRuBwWo4wxRwg1Puo_GBQqagJllJsWLOXg7w7SXXYx`
+        'Authorization': `Bearer <insert key>`
       },
       params: {
         latitude: this.state.latitude,
